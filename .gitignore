@@ -1,0 +1,12 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editor local settings
+.vscode/
+.idea/
+node_modules/
+
+# Logs and local scratch files
+*.log
+*.tmp
