@@ -1,109 +1,168 @@
-
 # Bitpin USDT Chart Userscript
 
-A lightweight Tampermonkey userscript that removes a specific
-login/register overlay from the Bitpin USDT chart page.
+A lightweight Tampermonkey userscript that removes a specific login/register overlay from the Bitpin USDT chart page.
 
-**Version:** `1.0.0`
+**Version:** `1.0.1`
 
 ## Features
 
-- Removes the targeted login/register overlay.
-- Uses exact HTML class matching.
-- Supports dynamically rendered elements.
+- Removes the targeted overlay `<div>` and all of its child elements.
+- Matches the target using seven CSS classes, regardless of their order or any additional classes.
+- Does not depend on the `aria-hidden` attribute or an exact class count.
+- Detects overlays dynamically added to the page using `MutationObserver`.
 - Runs only on the Bitpin USDT page.
 - Requires no external APIs or dependencies.
-- Supports automatic updates through GitHub.
+- Supports update checks and downloads through GitHub when enabled in Tampermonkey.
 
 ## Supported Page
 
-- https://bitpin.org/coin/USDT/
+https://bitpin.org/coin/USDT/
 
-## Installation
+## Easy Installation (Recommended)
 
-1. Install the Tampermonkey browser extension.
-2. Open [bitpin-usdt.user.js](./bitpin-usdt.user.js).
-3. Click **Raw** or copy the script into Tampermonkey.
-4. Save and enable the script.
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) browser extension and enable it.
+2. Open the direct installation URL below in your browser.
+3. Confirm the installation in Tampermonkey if prompted.
+4. Open or refresh the Bitpin USDT page.
+
+**Direct installation URL:**
+
+https://raw.githubusercontent.com/shinraad/Bitpin-USDTChart-Userscript/main/bitpin-usdt.user.js
+
+If the browser displays plain JavaScript instead of opening Tampermonkey, copy the script into a new Tampermonkey userscript and save it, or use the manual method below.
+
+## Manual Installation
+
+1. Open [`bitpin-usdt.user.js`](./bitpin-usdt.user.js) in this repository.
+2. Click **Raw** and copy the complete code.
+3. In Tampermonkey, select **Create a new script**.
+4. Replace the editor content with the copied code; save and enable the script.
 5. Refresh the Bitpin USDT page.
+
+## Automatic Updates
+
+The script declares `@version`, `@updateURL`, and `@downloadURL`. To receive future releases, keep update checks enabled in Tampermonkey. New releases must increment `@version` and publish the updated `.user.js` file to the `main` branch. GitHub Releases alone do not update the installed script. Update checks are periodic, not immediate.
 
 ## How It Works
 
-The script identifies the target overlay by checking its
-HTML element, aria-hidden attribute, and exact CSS class list.
+The script targets a `div` containing all seven CSS classes below, regardless of their order or additional classes:
 
-It removes the matching element from the DOM.
+```css
+div.absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md
+```
 
-A MutationObserver detects dynamically inserted overlays.
+It removes the matching `div` and all of its descendants from the browser DOM using `Element.remove()`. A `MutationObserver` checks for overlays that are added later or whose class attributes change.
+
+## Changes in v1.0.1
+
+- Removed the requirement for `aria-hidden="true"`.
+- Removed the restriction on the exact number of CSS classes.
+- Improved detection of dynamically added matching overlays.
 
 ## Limitations
 
 - Changes browser-side presentation only.
-- Does not bypass server-side authentication.
+- Does not bypass server-side authentication or authorization.
 - Does not retrieve restricted chart data.
-- May require updates if the website structure changes.
+- May require updates if the website's HTML or classes change.
 
 ## Disclaimer
 
-This is an independent, unofficial project and is not
-affiliated with, endorsed by, or maintained by Bitpin.
+This is an independent, unofficial project and is not affiliated with, endorsed by, or maintained by Bitpin. The script is provided as-is, without warranty.
 
 ---
 
 <div dir="rtl" align="right">
 
-# اسکریپت نمایش نمودار تتر بیت‌پین
+# اسکریپت نمودار تتر بیت‌پین
 
-اسکریپت سبک Tampermonkey برای حذف لایه مشخص ورود
-و ثبت‌نام از صفحه نمودار تتر در وب‌سایت بیت‌پین.
+اسکریپت سبک Tampermonkey برای حذف لایه مشخص ورود و ثبت‌نام از صفحه نمودار تتر در وب‌سایت بیت‌پین.
 
-**نسخه: `1.0.0`**
+**نسخه: `1.0.1`**
 
 ## قابلیت‌ها
 
-- حذف لایه مشخص ورود و ثبت‌نام از صفحه تتر
-- شناسایی دقیق عنصر با استفاده از کلاس‌های HTML
-- پشتیبانی از تغییرات پویای صفحه
+- حذف کامل `div` هدف به همراه تمام عناصر داخلی آن
+- شناسایی عنصر بر اساس وجود هفت کلاس CSS، مستقل از ترتیب کلاس‌ها یا وجود کلاس‌های اضافی
+- بدون وابستگی به ویژگی `aria-hidden` یا تعداد دقیق کلاس‌ها
+- شناسایی لایه‌هایی که بعداً به‌صورت پویا ایجاد می‌شوند، با استفاده از `MutationObserver`
 - اجرا فقط در صفحه تتر بیت‌پین
-- بدون نیاز به API یا وابستگی خارجی
-- پشتیبانی از به‌روزرسانی خودکار از طریق GitHub
+- بدون نیاز به API یا کتابخانه خارجی
+- پشتیبانی از بررسی و دریافت به‌روزرسانی از GitHub در صورت فعال بودن تنظیمات Tampermonkey
 
 ## صفحه پشتیبانی‌شده
 
+</div>
+
 https://bitpin.org/coin/USDT/
 
-## روش نصب
+<div dir="rtl" align="right">
 
-۱. افزونه Tampermonkey را روی مرورگر نصب کنید.
+## نصب آسان (پیشنهادی)
 
-۲. فایل [bitpin-usdt.user.js](./bitpin-usdt.user.js) را باز کنید.
+۱. افزونه [Tampermonkey](https://www.tampermonkey.net/) را روی مرورگر نصب و فعال کنید.
 
-۳. گزینه **Raw** را انتخاب کنید یا کد را در Tampermonkey کپی کنید.
+۲. لینک نصب مستقیم زیر را در مرورگر باز کنید.
 
-۴. اسکریپت را ذخیره و فعال کنید.
+۳. در صورت نمایش پنجره نصب Tampermonkey، نصب اسکریپت را تأیید کنید.
+
+۴. صفحه تتر بیت‌پین را باز کنید یا آن را بازآوری کنید.
+
+**لینک نصب مستقیم:**
+
+</div>
+
+https://raw.githubusercontent.com/shinraad/Bitpin-USDTChart-Userscript/main/bitpin-usdt.user.js
+
+<div dir="rtl" align="right">
+
+اگر به‌جای پنجره نصب، متن کد JavaScript نمایش داده شد، می‌توانید آن را در یک اسکریپت جدید Tampermonkey کپی و ذخیره کنید یا از روش نصب دستی زیر استفاده کنید.
+
+## نصب دستی
+
+۱. فایل [`bitpin-usdt.user.js`](./bitpin-usdt.user.js) را در همین مخزن باز کنید.
+
+۲. گزینه **Raw** را انتخاب و کل کد را کپی کنید.
+
+۳. در Tampermonkey گزینه **Create a new script** را انتخاب کنید.
+
+۴. کد قبلی ویرایشگر را با کد کپی‌شده جایگزین کنید؛ سپس آن را ذخیره و فعال کنید.
 
 ۵. صفحه نمودار تتر بیت‌پین را بازآوری کنید.
 
+## به‌روزرسانی خودکار
+
+اسکریپت دارای مشخصه‌های `@version`، `@updateURL` و `@downloadURL` است. برای دریافت نسخه‌های بعدی، بررسی به‌روزرسانی را در Tampermonkey فعال نگه دارید. هنگام انتشار نسخه جدید، باید مقدار `@version` افزایش یابد و فایل `.user.js` جدید در شاخه `main` قرار بگیرد. ایجاد Release در GitHub به‌تنهایی باعث به‌روزرسانی اسکریپت نصب‌شده نمی‌شود. بررسی به‌روزرسانی دوره‌ای است و لزوماً بلافاصله انجام نمی‌شود.
+
 ## نحوه عملکرد
 
-اسکریپت عنصر موردنظر را با بررسی تگ HTML،
-ویژگی aria-hidden و ترکیب دقیق کلاس‌های CSS شناسایی می‌کند.
+اسکریپت، `div` دارای تمام هفت کلاس CSS زیر را، بدون توجه به ترتیب کلاس‌ها یا وجود کلاس‌های اضافی، شناسایی می‌کند:
 
-پس از شناسایی، عنصر به‌طور کامل از DOM حذف می‌شود.
+</div>
 
-برای تشخیص و حذف عناصر ایجادشده به‌صورت پویا،
-از MutationObserver استفاده می‌شود.
+```css
+div.absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md
+```
+
+<div dir="rtl" align="right">
+
+سپس با استفاده از `Element.remove()` آن عنصر را به همراه تمام فرزندانش از DOM مرورگر حذف می‌کند. `MutationObserver` نیز برای شناسایی لایه‌هایی استفاده می‌شود که بعداً ایجاد می‌شوند یا کلاس‌هایشان تغییر می‌کند.
+
+## تغییرات نسخه ۱.۰.۱
+
+- حذف شرط `aria-hidden="true"`
+- حذف محدودیت تعداد دقیق کلاس‌های CSS
+- بهبود شناسایی لایه‌های منطبق که به‌صورت پویا ایجاد می‌شوند
 
 ## محدودیت‌ها
 
-- تغییرات فقط در مرورگر کاربر اعمال می‌شوند.
-- محدودیت‌های احراز هویت سمت سرور دور زده نمی‌شوند.
-- اطلاعات محدودشده از سرور بازیابی نمی‌شوند.
-- با تغییر ساختار HTML سایت ممکن است نیاز به اصلاح کد باشد.
+- تغییرات فقط در ظاهر صفحه داخل مرورگر اعمال می‌شوند.
+- محدودیت‌های احراز هویت یا مجوز دسترسی سمت سرور دور زده نمی‌شوند.
+- داده‌های محدودشده نمودار بازیابی نمی‌شوند.
+- با تغییر ساختار HTML یا کلاس‌های سایت ممکن است اصلاح اسکریپت ضروری باشد.
 
 ## سلب مسئولیت
 
-این پروژه مستقل و غیررسمی است و هیچ وابستگی یا تأییدی
-از طرف وب‌سایت بیت‌پین ندارد.
+این پروژه مستقل و غیررسمی است و هیچ وابستگی یا تأییدی از طرف بیت‌پین ندارد. اسکریپت بدون هیچ‌گونه ضمانت ارائه می‌شود.
 
 </div>
