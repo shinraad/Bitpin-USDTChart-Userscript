@@ -2,8 +2,8 @@
  // ==UserScript==
  // @name         Bitpin USDT Chart Overlay Remover
  // @namespace    https://github.com/shinraad/Bitpin-USDTChart-Userscript
- // @version      1.0.0
- // @description  Remove the login overlay from the Bitpin USDT chart.
+ // @version      1.0.1
+ // @description  Remove the specified overlay div from Bitpin USDT page.
  // @match        https://bitpin.org/coin/USDT/
  // @match        https://www.bitpin.org/coin/USDT/
  // @run-at       document-start
@@ -16,80 +16,35 @@
 (function () {
     'use strict';
 
-    const TARGET_CLASSES = [
-        'absolute',
-        'inset-0',
-        'z-20',
-        'flex',
-        'items-center',
-        'justify-center',
-        'backdrop-blur-md'
-    ];
+    const TARGET_SELECTOR =
+        'div.absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md';
 
-    const SELECTOR =
-        'div[aria-hidden="true"].absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md';
-
-    function isTarget(element) {
-        return (
-            element instanceof Element &&
-            element.matches(SELECTOR) &&
-            element.classList.length === TARGET_CLASSES.length
-        );
-    }
-
-    function removeOverlay(root = document) {
-        if (isTarget(root)) {
-            root.remove();
-            return;
-        }
-
-        if (!root.querySelectorAll) return;
-
-        root.querySelectorAll(SELECTOR).forEach(element => {
-            if (isTarget(element)) {
-                element.remove();
-            }
+    function removeTarget() {
+        document.querySelectorAll(TARGET_SELECTOR).forEach(div => {
+            div.remove();
         });
     }
 
     function initialize() {
-        removeOverlay();
+        removeTarget();
 
-        const observer = new MutationObserver(mutations => {
-            for (const mutation of mutations) {
-                if (mutation.type === 'attributes') {
-                    removeOverlay(mutation.target);
-                    continue;
-                }
-
-                for (const node of mutation.addedNodes) {
-                    if (node.nodeType === Node.ELEMENT_NODE) {
-                        removeOverlay(node);
-                    }
-                }
-            }
+        const observer = new MutationObserver(() => {
+            removeTarget();
         });
 
         observer.observe(document.documentElement, {
             childList: true,
             subtree: true,
             attributes: true,
-            attributeFilter: ['class', 'aria-hidden']
+            attributeFilter: ['class']
         });
     }
 
     if (document.documentElement) {
         initialize();
     } else {
-        const startupObserver = new MutationObserver(() => {
-            if (document.documentElement) {
-                startupObserver.disconnect();
-                initialize();
-            }
-        });
-
-        startupObserver.observe(document, {
-            childList: true
+        document.addEventListener('DOMContentLoaded', initialize, {
+            once: true
         });
     }
 })();
