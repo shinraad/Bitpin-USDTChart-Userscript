@@ -97,7 +97,10 @@ This is an independent, unofficial project and is not affiliated with, endorsed 
 
 </div>
 
+
 https://bitpin.org/coin/USDT/
+
+https://bitpin.ir/coin/USDT/
 
 <div dir="rtl" align="right">
 
