@@ -2,10 +2,12 @@
  // ==UserScript==
  // @name         Bitpin USDT Chart Overlay Remover
  // @namespace    https://github.com/shinraad/Bitpin-USDTChart-Userscript
- // @version      1.0.1
+ // @version      1.0.2
  // @description  Remove the specified overlay div from Bitpin USDT page.
  // @match        https://bitpin.org/coin/USDT/
  // @match        https://www.bitpin.org/coin/USDT/
+ // @match        https://bitpin.ir/coin/USDT/
+ // @match        https://www.bitpin.ir/coin/USDT/
  // @run-at       document-start
  // @grant        none
  // @noframes
