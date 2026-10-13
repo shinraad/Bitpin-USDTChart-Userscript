@@ -2,7 +2,7 @@
 
 A lightweight Tampermonkey userscript that removes a specific login/register overlay from the Bitpin USDT chart page.
 
-**Version:** `1.0.1`
+**Version:** `1.0.2`
 
 ## Features
 
@@ -17,6 +17,7 @@ A lightweight Tampermonkey userscript that removes a specific login/register ove
 ## Supported Page
 
 https://bitpin.org/coin/USDT/
+https://bitpin.ir/coin/USDT/
 
 ## Easy Installation (Recommended)
 
@@ -53,11 +54,12 @@ div.absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md
 
 It removes the matching `div` and all of its descendants from the browser DOM using `Element.remove()`. A `MutationObserver` checks for overlays that are added later or whose class attributes change.
 
-## Changes in v1.0.1
+## Changes in v1.0.2
 
-- Removed the requirement for `aria-hidden="true"`.
-- Removed the restriction on the exact number of CSS classes.
-- Improved detection of dynamically added matching overlays.
+- extends the userscript to support both Bitpin domains:
+    - bitpin.org
+    - bitpin.ir
+
 
 ## Limitations
 
@@ -78,7 +80,7 @@ This is an independent, unofficial project and is not affiliated with, endorsed 
 
 اسکریپت سبک Tampermonkey برای حذف لایه مشخص ورود و ثبت‌نام از صفحه نمودار تتر در وب‌سایت بیت‌پین.
 
-**نسخه: `1.0.1`**
+**نسخه: `1.0.2`**
 
 ## قابلیت‌ها
 
@@ -148,11 +150,11 @@ div.absolute.inset-0.z-20.flex.items-center.justify-center.backdrop-blur-md
 
 سپس با استفاده از `Element.remove()` آن عنصر را به همراه تمام فرزندانش از DOM مرورگر حذف می‌کند. `MutationObserver` نیز برای شناسایی لایه‌هایی استفاده می‌شود که بعداً ایجاد می‌شوند یا کلاس‌هایشان تغییر می‌کند.
 
-## تغییرات نسخه ۱.۰.۱
+## تغییرات نسخه ۱.۰.۲
 
-- حذف شرط `aria-hidden="true"`
-- حذف محدودیت تعداد دقیق کلاس‌های CSS
-- بهبود شناسایی لایه‌های منطبق که به‌صورت پویا ایجاد می‌شوند
+- در این نسخه، پشتیبانی از دامنه bitpin.ir به اسکریپت اضافه شده است.
+
+اکنون اسکریپت روی صفحات نمودار تتر در هر دو دامنه bitpin.org و bitpin.ir اجرا می‌شود.
 
 ## محدودیت‌ها
 
