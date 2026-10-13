@@ -14,7 +14,7 @@ A lightweight Tampermonkey userscript that removes a specific login/register ove
 - Requires no external APIs or dependencies.
 - Supports update checks and downloads through GitHub when enabled in Tampermonkey.
 
-## Supported Page
+## Supported Pages
 
 https://bitpin.org/coin/USDT/
 
@@ -93,7 +93,7 @@ This is an independent, unofficial project and is not affiliated with, endorsed 
 - بدون نیاز به API یا کتابخانه خارجی
 - پشتیبانی از بررسی و دریافت به‌روزرسانی از GitHub در صورت فعال بودن تنظیمات Tampermonkey
 
-## صفحه پشتیبانی‌شده
+## صفحات پشتیبانی‌شده
 
 </div>
 
