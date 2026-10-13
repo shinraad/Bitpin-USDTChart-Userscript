@@ -17,6 +17,7 @@ A lightweight Tampermonkey userscript that removes a specific login/register ove
 ## Supported Page
 
 https://bitpin.org/coin/USDT/
+
 https://bitpin.ir/coin/USDT/
 
 ## Easy Installation (Recommended)
